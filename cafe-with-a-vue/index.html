@@ -8,17 +8,59 @@
 		<title>Cafe with a Vue</title>
 	</head>
 	<body>
-		<div class="app">
-			<h1>La belle vue</h1>
-			<p class="description">
-				Bienvenue dans notre café la belle vue ! Nous sommes réputés pour notre
-				pain et nos merveilleuses pâtisseries. Faites vous plaisir dès le matin
-				ou avec un goûter réconfortant. Mais attention, vous verrez qu'il est
-				difficile de s'arrêter.
-			</p>
+		<div id="app">
+			<h1>VueMart</h1>
+  
+  			<h2>Panier</h2>
+			<ul>
+				<li v-for="item in shoppingCart">
+					{{ item.label }}: {{ item.cost }} €
+				</li>
+				
+			</ul>
+			<p>Total: {{ totalAmount }}€</li>
+			<ul>
+				<li v-for="item in apiResponse">
+					<a :href="item.url">{{ item.name }}</a>
+				</li>
+			</ul>
+			
 			<footer class="footer">
-				<p>Copyright La belle vue 2020</p>
+				<p>{{ copyright }}</p>
 			</footer>
 		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script>
+			const app = new Vue({
+			  el: '#app',
+			  data: {
+				shoppingCart: [
+					{ label: 'Bananes', cost: '6'},
+					{ label: 'Pommes', cost: '2'},
+					{ label: 'Noix de coco', cost: '8'}
+				],
+				apiResponse: [
+						{ name: 'GitHub', url: 'https://www.github.com' },
+						{ name: 'Twitter', url: 'https://www.twitter.com' },
+						{ name: 'Netlify', url: 'https://www.netlify.com' }
+				],
+				name : "Café avec vue"
+			  },
+			  computed: {
+				totalAmount() { 
+					return this.costPommes + this.costBananes + this.costNoixDeCoco
+				},
+				copyright() {
+					return "Copyright " + this.name + " 2020"
+				}
+			  }
+			})
+		</script>
+		  
+		
+		
+		
 	</body>
+	  
+	
 </html>
